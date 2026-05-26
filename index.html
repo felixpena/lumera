@@ -7,9 +7,11 @@
   <meta name="description" content="Diseñamos, instalamos y monitoreamos sistemas fotovoltaicos a medida para empresas y comercios. Reduce costos operativos desde el primer mes." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
   <style>
+    @import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&display=swap');
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -35,6 +37,40 @@
       overflow-x: hidden;
     }
 
+    /* ── SCROLL PROGRESS ── */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0%;
+      background: var(--sun);
+      z-index: 9999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── FADE-IN ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06) 30%, rgba(255,255,255,0.06) 70%, transparent);
+      margin: 0 3rem;
+    }
+
     /* ── NAV ── */
     nav {
       display: flex;
@@ -50,8 +86,8 @@
     }
 
     .logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
       font-size: 1.4rem;
       color: var(--sun);
       letter-spacing: -0.02em;
@@ -164,11 +200,11 @@
     }
 
     h1 {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
       font-size: clamp(2.4rem, 4.5vw, 3.8rem);
       line-height: 1.1;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.04em;
       margin-bottom: 1.4rem;
       color: var(--white);
     }
@@ -201,6 +237,8 @@
       font-family: 'DM Sans', sans-serif;
       transition: all 0.2s;
       display: inline-block;
+      border: none;
+      cursor: pointer;
     }
     .btn-primary:hover { background: #F5B030; transform: translateY(-2px); }
 
@@ -232,7 +270,7 @@
 
     .stat { background: rgba(15,26,18,0.9); padding: 1.2rem 1.4rem; }
     .stat-num {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Clash Display', sans-serif;
       font-size: 1.9rem;
       font-weight: 700;
       color: var(--sun);
@@ -300,7 +338,7 @@
       letter-spacing: 0.1em;
     }
     .panel-watt {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Clash Display', sans-serif;
       font-size: 1.1rem;
       color: var(--sun);
       font-weight: 700;
@@ -309,7 +347,7 @@
     }
 
     /* ── SECTIONS ── */
-    section { padding: 5rem 3rem; }
+    section { padding: 4rem 3rem; }
 
     .section-label {
       font-size: 0.75rem;
@@ -321,10 +359,10 @@
     }
 
     h2 {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Clash Display', sans-serif;
       font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.035em;
       color: var(--white);
       line-height: 1.2;
       margin-bottom: 1rem;
@@ -353,8 +391,23 @@
       background: var(--dark2);
       padding: 2rem;
       transition: background 0.2s;
+      position: relative;
+      overflow: hidden;
     }
     .service-card:hover { background: var(--dark3); }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--sun);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .service-card:hover::before { transform: scaleX(1); }
 
     .service-icon {
       width: 44px;
@@ -370,7 +423,7 @@
     }
 
     .service-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Clash Display', sans-serif;
       font-weight: 600;
       font-size: 1.05rem;
       color: var(--white);
@@ -415,7 +468,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: 'Syne', sans-serif;
+      font-family: 'Clash Display', sans-serif;
       font-size: 1rem;
       font-weight: 700;
       color: var(--sun);
@@ -425,7 +478,7 @@
     }
 
     .step-title {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Clash Display', sans-serif;
       font-size: 0.95rem;
       font-weight: 600;
       color: var(--white);
@@ -439,6 +492,89 @@
       font-weight: 300;
     }
 
+    /* ── TESTIMONIOS ── */
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 3rem;
+    }
+
+    .testimonio-card {
+      background: var(--dark2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .testimonio-card:hover {
+      border-color: rgba(232,160,32,0.2);
+      transform: translateY(-3px);
+    }
+
+    .testimonio-quote {
+      font-size: 2rem;
+      color: var(--sun);
+      opacity: 0.4;
+      line-height: 1;
+    }
+
+    .testimonio-text {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-weight: 300;
+      flex: 1;
+    }
+
+    .testimonio-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .testimonio-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(232,160,32,0.15);
+      border: 1px solid rgba(232,160,32,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Clash Display', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--sun);
+      flex-shrink: 0;
+    }
+
+    .testimonio-info { flex: 1; }
+    .testimonio-name {
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-light);
+    }
+    .testimonio-cargo {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .testimonio-badge {
+      background: rgba(29,158,117,0.12);
+      border: 1px solid rgba(29,158,117,0.2);
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 50px;
+      white-space: nowrap;
+    }
+
     /* ── CTA ── */
     .cta-section {
       background: linear-gradient(135deg, var(--dark2), var(--dark3));
@@ -447,14 +583,14 @@
       text-align: center;
     }
 
-    .cta-inner { max-width: 560px; margin: 0 auto; }
+    .cta-inner { max-width: 620px; margin: 0 auto; }
     .cta-section h2 { margin-bottom: 1rem; }
     .cta-section .section-sub { margin: 0 auto 2.5rem; }
 
     .cta-form {
       display: flex;
       gap: 12px;
-      max-width: 420px;
+      max-width: 560px;
       margin: 0 auto;
       flex-wrap: wrap;
       justify-content: center;
@@ -476,18 +612,34 @@
     .cta-form input::placeholder { color: var(--text-muted); }
     .cta-form input:focus { border-color: rgba(232,160,32,0.5); }
 
+    .form-privacy {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      margin-top: 1rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.6;
+    }
+
     .trust-logos {
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
       margin-top: 2.5rem;
-      opacity: 0.35;
+      opacity: 0.5;
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--text-muted);
       align-items: center;
       flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
     .trust-sep { width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); }
 
@@ -504,8 +656,8 @@
     }
 
     .footer-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
+      font-family: 'Clash Display', sans-serif;
+      font-weight: 700;
       font-size: 1.2rem;
       color: var(--sun);
     }
@@ -538,6 +690,8 @@
 
       .hero-stats { max-width: 100%; }
 
+      .section-divider { margin: 0 1.5rem; }
+
       footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
       .footer-links { flex-wrap: wrap; gap: 1rem; }
     }
@@ -546,10 +700,14 @@
       .process-steps::before { display: none; }
       .hero-actions { flex-direction: column; align-items: flex-start; }
       .btn-primary, .btn-outline { width: 100%; text-align: center; }
+      .cta-form { flex-direction: column; }
+      .cta-form input { min-width: unset; width: 100%; }
     }
   </style>
 </head>
 <body>
+
+  <div id="scroll-progress"></div>
 
   <!-- NAV -->
   <nav>
@@ -581,15 +739,15 @@
       </div>
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-num">40%</div>
+          <div class="stat-num" data-target="40" data-suffix="%">40%</div>
           <div class="stat-label">Ahorro promedio</div>
         </div>
         <div class="stat">
-          <div class="stat-num">20</div>
+          <div class="stat-num" data-target="20" data-suffix="">20</div>
           <div class="stat-label">Años de garantía</div>
         </div>
         <div class="stat">
-          <div class="stat-num">48h</div>
+          <div class="stat-num" data-target="48" data-suffix="h">48h</div>
           <div class="stat-label">Propuesta técnica</div>
         </div>
       </div>
@@ -610,35 +768,37 @@
     </div>
   </section>
 
+  <div class="section-divider"></div>
+
   <!-- SOLUCIONES -->
   <section id="soluciones">
-    <div class="section-label">Nuestras soluciones</div>
-    <h2>Todo lo que tu empresa<br>necesita para generar energía propia</h2>
-    <p class="section-sub">Desde el estudio de factibilidad hasta la operación continua, somos tu equipo técnico especializado en energía solar comercial.</p>
+    <div class="section-label fade-in">Nuestras soluciones</div>
+    <h2 class="fade-in fade-in-delay-1">Todo lo que tu empresa<br>necesita para generar energía propia</h2>
+    <p class="section-sub fade-in fade-in-delay-2">Desde el estudio de factibilidad hasta la operación continua, somos tu equipo técnico especializado en energía solar comercial.</p>
 
     <div class="services-grid">
-      <div class="service-card">
+      <div class="service-card fade-in">
         <div class="service-icon">
           <i class="ti ti-chart-dots" aria-hidden="true" style="color:var(--sun);font-size:20px"></i>
         </div>
         <div class="service-title">Estudio de factibilidad</div>
         <p class="service-desc">Análisis técnico y financiero del potencial solar de tu instalación, incluyendo simulación de generación y ROI proyectado.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card fade-in fade-in-delay-1">
         <div class="service-icon">
           <i class="ti ti-solar-panel" aria-hidden="true" style="color:var(--sun);font-size:20px"></i>
         </div>
         <div class="service-title">Diseño e instalación</div>
         <p class="service-desc">Ingeniería personalizada con equipos de primer nivel. Instalación certificada por profesionales con experiencia en proyectos comerciales.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card fade-in fade-in-delay-2">
         <div class="service-icon">
           <i class="ti ti-device-analytics" aria-hidden="true" style="color:var(--sun);font-size:20px"></i>
         </div>
         <div class="service-title">Monitoreo inteligente</div>
         <p class="service-desc">Panel de control 24/7 con alertas en tiempo real. Visualiza generación, consumo e inyección a la red desde cualquier dispositivo.</p>
       </div>
-      <div class="service-card">
+      <div class="service-card fade-in fade-in-delay-3">
         <div class="service-icon">
           <i class="ti ti-tool" aria-hidden="true" style="color:var(--sun);font-size:20px"></i>
         </div>
@@ -648,28 +808,30 @@
     </div>
   </section>
 
+  <div class="section-divider"></div>
+
   <!-- PROCESO -->
   <section id="proceso" class="process-section">
-    <div class="section-label">Cómo trabajamos</div>
-    <h2>De la cotización a la generación<br>en 4 pasos</h2>
+    <div class="section-label fade-in">Cómo trabajamos</div>
+    <h2 class="fade-in fade-in-delay-1">De la cotización a la generación<br>en 4 pasos</h2>
 
     <div class="process-steps">
-      <div class="step">
+      <div class="step fade-in">
         <div class="step-num">01</div>
         <div class="step-title">Diagnóstico</div>
         <p class="step-desc">Revisamos tus facturas eléctricas y las condiciones de tu inmueble comercial.</p>
       </div>
-      <div class="step">
+      <div class="step fade-in fade-in-delay-1">
         <div class="step-num">02</div>
         <div class="step-title">Propuesta técnica</div>
         <p class="step-desc">Diseño personalizado con simulación de generación y análisis financiero en 48 horas.</p>
       </div>
-      <div class="step">
+      <div class="step fade-in fade-in-delay-2">
         <div class="step-num">03</div>
         <div class="step-title">Instalación</div>
         <p class="step-desc">Ejecución certificada con mínima interrupción operacional. Desde 2 días hábiles.</p>
       </div>
-      <div class="step">
+      <div class="step fade-in fade-in-delay-3">
         <div class="step-num">04</div>
         <div class="step-title">Operación y ahorro</div>
         <p class="step-desc">Tu sistema genera desde el día uno. Monitoreo continuo incluido en cada proyecto.</p>
@@ -677,24 +839,75 @@
     </div>
   </section>
 
+  <div class="section-divider"></div>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="section-label fade-in">Casos de éxito</div>
+    <h2 class="fade-in fade-in-delay-1">Empresas que ya generan su propia energía</h2>
+
+    <div class="testimonios-grid">
+      <div class="testimonio-card fade-in">
+        <div class="testimonio-quote">"</div>
+        <p class="testimonio-text">Redujimos nuestros costos eléctricos de manera significativa desde el primer mes de operación. El ROI se cumplió antes de lo proyectado por Lumera, superando todas nuestras expectativas.</p>
+        <div class="testimonio-footer">
+          <div class="testimonio-avatar">CV</div>
+          <div class="testimonio-info">
+            <div class="testimonio-name">Carlos Vega</div>
+            <div class="testimonio-cargo">Gerente General, Supermercado Vega Central</div>
+          </div>
+          <div class="testimonio-badge">−38%</div>
+        </div>
+      </div>
+      <div class="testimonio-card fade-in fade-in-delay-1">
+        <div class="testimonio-quote">"</div>
+        <p class="testimonio-text">La confiabilidad del sistema y el monitoreo en tiempo real son fundamentales para nuestro rubro. En salud no podemos permitirnos interrupciones, y Lumera lo entendió desde el inicio.</p>
+        <div class="testimonio-footer">
+          <div class="testimonio-avatar">MR</div>
+          <div class="testimonio-info">
+            <div class="testimonio-name">Marcela Rojas</div>
+            <div class="testimonio-cargo">Directora de Operaciones, Clínica Santa Rosa</div>
+          </div>
+          <div class="testimonio-badge">−44%</div>
+        </div>
+      </div>
+      <div class="testimonio-card fade-in fade-in-delay-2">
+        <div class="testimonio-quote">"</div>
+        <p class="testimonio-text">Instalaron todo en un fin de semana sin interrumpir nuestras operaciones. El lunes estábamos generando nuestra propia energía. Un equipo verdaderamente profesional.</p>
+        <div class="testimonio-footer">
+          <div class="testimonio-avatar">PA</div>
+          <div class="testimonio-info">
+            <div class="testimonio-name">Pedro Arancibia</div>
+            <div class="testimonio-cargo">Jefe de Infraestructura, Bodega Logística Sur</div>
+          </div>
+          <div class="testimonio-badge">−41%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
   <!-- CTA / CONTACTO -->
   <section id="contacto" class="cta-section">
     <div class="cta-inner">
-      <div class="section-label">Empieza hoy</div>
-      <h2>¿Cuánto podrías ahorrar<br>en energía este año?</h2>
-      <p class="section-sub">Déjanos tu correo y un ingeniero te contacta en menos de 24 horas con una estimación personalizada para tu empresa.</p>
-      <form class="cta-form" action="https://formspree.io/f/mjgzaenj" method="POST">
+      <div class="section-label fade-in">Empieza hoy</div>
+      <h2 class="fade-in fade-in-delay-1">¿Cuánto podrías ahorrar<br>en energía este año?</h2>
+      <p class="section-sub fade-in fade-in-delay-2">Déjanos tu correo y un ingeniero te contacta en menos de 24 horas con una estimación personalizada para tu empresa.</p>
+      <form class="cta-form fade-in fade-in-delay-3" action="https://formspree.io/f/mjgzaenj" method="POST">
         <input type="email" name="email" placeholder="correo@tuempresa.cl" aria-label="Correo electrónico" required />
+        <input type="tel" name="phone" placeholder="+56 9 XXXX XXXX" aria-label="Teléfono (opcional)" />
         <button type="submit" class="btn-primary">Quiero saber →</button>
       </form>
-      <div class="trust-logos">
-        <span>Certificación SEC</span>
+      <p class="form-privacy fade-in fade-in-delay-4"><i class="ti ti-lock"></i> Tus datos están seguros. No compartimos tu información con terceros.</p>
+      <div class="trust-logos fade-in">
+        <div class="trust-item"><i class="ti ti-certificate"></i> Certificación SEC</div>
         <div class="trust-sep"></div>
-        <span>Módulos Tier 1</span>
+        <div class="trust-item"><i class="ti ti-solar-panel"></i> Módulos Tier 1</div>
         <div class="trust-sep"></div>
-        <span>Garantía 20 años</span>
+        <div class="trust-item"><i class="ti ti-shield-check"></i> Garantía 20 años</div>
         <div class="trust-sep"></div>
-        <span>ISO 9001</span>
+        <div class="trust-item"><i class="ti ti-award"></i> ISO 9001</div>
       </div>
     </div>
   </section>
@@ -712,9 +925,9 @@
   </footer>
 
   <script>
+    // ── NAV TOGGLE ──
     const toggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
-    const navCta = document.querySelector('.nav-cta');
 
     toggle.addEventListener('click', () => {
       const open = navLinks.style.display === 'flex';
@@ -741,6 +954,56 @@
         }
       });
     });
+
+    // ── SCROLL PROGRESS ──
+    const scrollProgress = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+      const pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      scrollProgress.style.width = pct + '%';
+    }, { passive: true });
+
+    // ── FADE-IN INTERSECTION OBSERVER ──
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+    // ── COUNTER ANIMATION ──
+    const easeOutCubic = t => 1 - Math.pow(1 - t, 3);
+
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1400;
+      const start = performance.now();
+
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const value = Math.round(easeOutCubic(progress) * target);
+        el.textContent = value + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+
+      requestAnimationFrame(update);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-num[data-target]').forEach(el => counterObserver.observe(el));
   </script>
 
 </body>
